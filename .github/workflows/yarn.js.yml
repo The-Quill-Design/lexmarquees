@@ -6,9 +6,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: borales/actions-yarn@v2.3.0
+      - uses: actions/setup-node@v2
         with:
+          node-version: '14'
           cmd: install # will run `yarn install` command
-      - uses: borales/actions-yarn@v2.3.0
+      - uses: actions/setup-node@v2
         with:
+          node-version: '14'
           cmd: generate # will run `yarn generate` command
