@@ -4,5 +4,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: kappa0923/nuxtjs-generate-action@v0.1.0
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+          with:
+            node-version: '12'
+
+      - name: Cache Dependencies
+        uses: actions/cache@v2
+          with:
+            path: '**/node_modules'
+            key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+  
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Build Project
+        run: yarn generate
